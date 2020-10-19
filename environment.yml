@@ -1,4 +1,8 @@
 name: aqsolpred
+channels:
+- rdkit
+- conda-forge
+- defaults
 dependencies:
     - rdkit
     - pip:
