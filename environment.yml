@@ -4,10 +4,11 @@ channels:
 - conda-forge
 - defaults
 dependencies:
-    - rdkit
+    - rdkit=2019.09.3
     - pip:
-        - pandas
-        - numpy
-        - scikit-learn
+        - pandas=1.0.1
+        - numpy=1.18.1
+        - scikit-learn=0.22.2.post1
         - mordred
-        - xgboost
+        - xgboost=1.0.2
+        - streamlit=0.69.2
