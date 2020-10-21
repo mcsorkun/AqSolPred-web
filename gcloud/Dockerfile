@@ -6,7 +6,6 @@ WORKDIR /app
 COPY . ./
 
 # Install production dependencies.
-RUN conda install -c conda-forge rdkit
 RUN pip3 install -r requirements.txt
 
 # Run the web service on container startup. 
