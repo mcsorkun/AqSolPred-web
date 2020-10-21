@@ -1,0 +1,6 @@
+streamlit==0.69.2
+pandas==1.0.1
+numpy==1.18.1
+scikit-learn==0.22.2.post1
+mordred==1.2.0
+xgboost==1.0.2
