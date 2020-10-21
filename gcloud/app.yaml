@@ -1,1 +1,2 @@
-runtime: python37
+runtime: custom
+env: flex
