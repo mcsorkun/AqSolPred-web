@@ -21,7 +21,7 @@ RUN wget \
     && bash Miniconda3-latest-Linux-x86_64.sh -b \
     && rm -f Miniconda3-latest-Linux-x86_64.sh 
 RUN conda --version
-RUN conda install -c conda-forge rdkit
+RUN conda install -c conda-forge rdkit=2019.09.3
 
 # Run the web service on container startup. 
 CMD streamlit run --server.port 8080 --server.enableCORS false aqsolpred_web.py
