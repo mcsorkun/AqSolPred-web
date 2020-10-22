@@ -20,13 +20,13 @@ RUN wget \
     && rm -f Miniconda3-latest-Linux-x86_64.sh 
 RUN conda --version
 
-RUN conda create --name myenv
-RUN conda init bash
-RUN conda activate myenv
+# && conda init bash  \
 
-RUN conda install -c conda-forge rdkit=2019.09.3
-RUN python -c "import rdkit"
-RUN pip3 install -r requirements.txt
+RUN conda create --name myenv  \
+ && conda activate myenv \
+ && conda install -c conda-forge rdkit=2019.09.3 \
+ && python -c "import rdkit" \
+ && pip3 install -r requirements.txt 
 
 
 # Run the web service on container startup. 
