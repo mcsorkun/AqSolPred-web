@@ -21,6 +21,7 @@ RUN wget \
 RUN conda --version
 
 RUN conda create --name myenv
+RUN conda init bash
 RUN conda activate myenv
 
 RUN conda install -c conda-forge rdkit=2019.09.3
