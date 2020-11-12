@@ -6,16 +6,19 @@ ADD . /app
 
 # Install production dependencies.
 
+ENV PATH="/root/miniconda3/bin:${PATH}"
+ARG PATH="/root/miniconda3/bin:${PATH}"
 RUN apt-get update
+
 RUN apt-get install -y wget && rm -rf /var/lib/apt/lists/*
 
+RUN wget \
+    https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh \
+    && mkdir /root/.conda \
+    && bash Miniconda3-latest-Linux-x86_64.sh -b \
+    && rm -f Miniconda3-latest-Linux-x86_64.sh 
+RUN conda --version
 
-
-RUN ["/bin/bash", "-c", "https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O $HOME/miniconda.sh"]
-RUN chmod 0755 $HOME/miniconda.sh
-RUN ["/bin/bash", "-c", "$HOME/miniconda.sh -b -p $HOME/conda"]
-ENV PATH="$HOME/conda/bin:$PATH"
-RUN rm $HOME/miniconda.sh
 
 # update conda
 RUN conda install install -c conda-forge rdkit=2019.09.3
