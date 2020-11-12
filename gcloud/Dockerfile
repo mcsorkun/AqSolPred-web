@@ -18,8 +18,6 @@ ENV PATH="$HOME/conda/bin:$PATH"
 RUN rm $HOME/miniconda.sh
 
 # update conda
-RUN conda update conda
-RUN conda install conda-build
 RUN conda install install -c conda-forge rdkit=2019.09.3
 RUN pip3 install -r requirements.txt 
 
