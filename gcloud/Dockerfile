@@ -1,12 +1,12 @@
 FROM python:3.7
-EXPOSE 8080
 
-# Copy local code to the container image.
+RUN pip install virtualenv
+ENV VIRTUAL_ENV=/venv
+RUN virtualenv venv -p python3
+ENV PATH="VIRTUAL_ENV/bin:$PATH"
+
 WORKDIR /app
-COPY . ./
-
-ENV PATH="/root/miniconda3/bin:${PATH}"
-ARG PATH="/root/miniconda3/bin:${PATH}"
+ADD . /app
 
 # Install production dependencies.
 
@@ -22,14 +22,25 @@ RUN conda --version
 
 # && conda init bash  \
 
-RUN conda create --name myenv  \
- && conda activate myenv \
- && conda install -c conda-forge rdkit=2019.09.3 \
- && python -c "import rdkit" \
+RUN conda install -c conda-forge rdkit=2019.09.3 \
  && pip3 install -r requirements.txt 
 
+# Expose port 
+ENV PORT 8501
 
-# Run the web service on container startup. 
-CMD conda activate myenv
-CMD python -c "import rdkit"
-CMD streamlit run --server.port 8080 --server.enableCORS false aqsolpred_web.py
+# cmd to launch app when container is run
+CMD streamlit run app.py
+
+# streamlit-specific commands for config
+ENV LC_ALL=C.UTF-8
+ENV LANG=C.UTF-8
+RUN mkdir -p /root/.streamlit
+RUN bash -c 'echo -e "\
+[general]\n\
+email = \"\"\n\
+" > /root/.streamlit/credentials.toml'
+
+RUN bash -c 'echo -e "\
+[server]\n\
+enableCORS = false\n\
+" > /root/.streamlit/config.toml'
