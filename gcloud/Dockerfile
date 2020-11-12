@@ -18,7 +18,7 @@ RUN wget \
     && mkdir /root/.conda \
     && bash Miniconda3-latest-Linux-x86_64.sh -b \
     && rm -f Miniconda3-latest-Linux-x86_64.sh \
-    && conda install -c conda-forge rdkit=2019.09.3 \
+    && /opt/conda/bin/conda install -c conda-forge rdkit=2019.09.3 \
     && pip3 install -r requirements.txt 
 
 # Expose port 
