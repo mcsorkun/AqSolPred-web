@@ -23,7 +23,7 @@ RUN conda --version
 # update conda
 RUN conda create -n env python=3.7
 RUN echo "source activate env" > ~/.bashrc \
-    && conda install -c conda-forge rdkit=2019.09.3
+    && conda install -c conda-forge rdkit=2019.09.3 \
     && pip3 install -r requirements.txt 
 
 
