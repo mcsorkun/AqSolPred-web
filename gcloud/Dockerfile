@@ -24,6 +24,8 @@ RUN conda --version
 RUN conda install -c conda-forge rdkit=2019.09.3
 RUN pip3 install -r requirements.txt 
 
+COPY . /app
+
 # Expose port 
 ENV PORT 8501
 
