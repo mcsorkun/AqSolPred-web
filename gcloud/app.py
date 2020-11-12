@@ -98,7 +98,7 @@ SMILES = SMILES.split('\n')
 st.sidebar.write("""---------**OR**---------""")
 
 
-st.sidebar.write("""**Upload a file with a column named 'SMILES'**""")
+st.sidebar.write("""**Upload a file with a column named 'SMILES'** (Max:500)""")
 
 
  
@@ -113,6 +113,9 @@ if uploaded_file is not None:
 # st.header('Input SMILES')
 # SMILES[1:] # Skips the dummy first item
 
+# Use only top 500
+if len(SMILES)>500:
+    SMILES=SMILES[0:500]
 ## Calculate molecular descriptors
 generated_descriptors = generate(SMILES)
 
@@ -162,7 +165,7 @@ AqSolPred showed a top-performance (0.348 LogS Mean Absolute Error) on Huuskonen
 
 If you are using the predictions from AqSolPred on your work, please cite these papers: [1, 2]
 
-[1] Sorkun, M. C., Khetan, A. & Er, S.  (2020). Pushing the limits of solubility prediction via quality-oriented data selection, Research Square, DOI:https://doi.org/10.21203/rs.3.rs-84771/v1.
+[1] Sorkun, M. C., Koelman, J.M.V.A. & Er, S.  (2020). Pushing the limits of solubility prediction via quality-oriented data selection, Research Square, DOI:https://doi.org/10.21203/rs.3.rs-84771/v1.
 
 [2] Sorkun, M. C., Khetan, A., & Er, S. (2019).  [AqSolDB, a curated reference set of aqueous solubility and 2D descriptors for a diverse set of compounds](https://www.nature.com/articles/s41597-019-0151-1). Scientific data, 6(1), 1-8.
 
