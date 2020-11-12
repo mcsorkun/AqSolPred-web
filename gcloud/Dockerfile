@@ -11,7 +11,7 @@ RUN apt-get install -y wget && rm -rf /var/lib/apt/lists/*
 
 
 
-RUN ["/bin/bash", "-c", "wget http://repo.continuum.io/miniconda/Miniconda-latest-Linux-x86_64.sh -O $HOME/miniconda.sh"]
+RUN ["/bin/bash", "-c", "https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O $HOME/miniconda.sh"]
 RUN chmod 0755 $HOME/miniconda.sh
 RUN ["/bin/bash", "-c", "$HOME/miniconda.sh -b -p $HOME/conda"]
 ENV PATH="$HOME/conda/bin:$PATH"
