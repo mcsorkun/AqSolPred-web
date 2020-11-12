@@ -25,7 +25,7 @@ RUN wget \
 ENV PORT 8501
 
 # cmd to launch app when container is run
-CMD streamlit run app.py
+CMD streamlit run aqsolpred_web.py
 
 # streamlit-specific commands for config
 ENV LC_ALL=C.UTF-8
