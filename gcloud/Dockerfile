@@ -21,7 +21,7 @@ RUN conda --version
 
 
 # update conda
-RUN conda install install -c conda-forge rdkit=2019.09.3
+RUN conda install -c conda-forge rdkit=2019.09.3
 RUN pip3 install -r requirements.txt 
 
 # Expose port 
