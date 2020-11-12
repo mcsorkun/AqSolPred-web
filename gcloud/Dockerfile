@@ -1,9 +1,5 @@
 FROM python:3.7
 
-RUN pip install virtualenv
-ENV VIRTUAL_ENV=/venv
-RUN virtualenv venv -p python3
-ENV PATH="VIRTUAL_ENV/bin:$PATH"
 
 WORKDIR /app
 ADD . /app
@@ -13,13 +9,19 @@ ADD . /app
 RUN apt-get update
 RUN apt-get install -y wget && rm -rf /var/lib/apt/lists/*
 
-RUN wget \
-    https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh \
-    && mkdir /root/.conda \
-    && bash Miniconda3-latest-Linux-x86_64.sh -b \
-    && rm -f Miniconda3-latest-Linux-x86_64.sh \
-    && /opt/conda/bin/conda install -c conda-forge rdkit=2019.09.3 \
-    && pip3 install -r requirements.txt 
+
+
+RUN ["/bin/bash", "-c", "wget http://repo.continuum.io/miniconda/Miniconda-latest-Linux-x86_64.sh -O $HOME/miniconda.sh"]
+RUN chmod 0755 $HOME/miniconda.sh
+RUN ["/bin/bash", "-c", "$HOME/miniconda.sh -b -p $HOME/conda"]
+ENV PATH="$HOME/conda/bin:$PATH"
+RUN rm $HOME/miniconda.sh
+
+# update conda
+RUN conda update conda
+RUN conda install conda-build
+RUN conda install install -c conda-forge rdkit=2019.09.3
+RUN pip3 install -r requirements.txt 
 
 # Expose port 
 ENV PORT 8501
