@@ -24,9 +24,6 @@ import base64
 # Custom function
 ######################
 ## Calculate molecular descriptors
-
-
-
 def generate(smiles_list, verbose=False):
 
     selected_columns=['nHBAcc', 'nHBDon', 'nRot', 'nBonds', 'nAromBond', 'nBondsO', 'nBondsS',
@@ -71,15 +68,11 @@ def generate(smiles_list, verbose=False):
 # Page Title
 ######################
 
-st.write("""# AqSolPred: Aqueous Solubility Prediction Tool
-
-""")
+st.write("""# AqSolPred: Aqueous Solubility Prediction Tool""")
 
 
 image = Image.open('solubility-factors.png')
-
 st.image(image, use_column_width=False)
-
 
 
 ######################
@@ -93,15 +86,11 @@ SMILES_input = "CN1C=NC2=C1C(=O)N(C(=O)N2C)C\nCC(=O)OC1=CC=CC=C1C(=O)O"
 
 SMILES = st.sidebar.text_area('then press ctrl+enter', SMILES_input, height=20)
 SMILES = SMILES.split('\n')
-
+SMILES = list(filter(None, SMILES))
 
 st.sidebar.write("""---------**OR**---------""")
+st.sidebar.write("""**Upload a file with a column named 'SMILES'** (Max:500)""")
 
-
-st.sidebar.write("""**Upload a file with a column named 'SMILES'**""")
-
-
- 
    
 uploaded_file = st.sidebar.file_uploader("Choose a file")
 if uploaded_file is not None:
@@ -109,7 +98,10 @@ if uploaded_file is not None:
     # data
     SMILES=data["SMILES"]  
 
-
+# Use only top 500
+if len(SMILES)>500:
+    SMILES=SMILES[0:500]
+    
 # st.header('Input SMILES')
 # SMILES[1:] # Skips the dummy first item
 
@@ -132,7 +124,7 @@ pred_consensus=(pred_mlp+pred_xgb+pred_rf)/3
 
 # results=np.column_stack([pred_mlp,pred_xgb,pred_rf,pred_consensus])
 df_results = pd.DataFrame(SMILES, columns=['SMILES'])
-df_results["LogS (AqSolPred 1.0)"]=pred_consensus
+df_results["LogS (AqSolPred v1.0s)"]=pred_consensus
 df_results=df_results.round(3)
 
 
@@ -160,9 +152,11 @@ AqSolPred is an highly accurate solubility prediction model that consists consen
 
 AqSolPred showed a top-performance (0.348 LogS Mean Absolute Error) on Huuskonen benchmark dataset [3].
 
+**version:** 1.0s (lite version of v1.0 described in the paper with reduced RFs(n_estimators=200,max_depth=10) but the same performance)
+
 If you are using the predictions from AqSolPred on your work, please cite these papers: [1, 2]
 
-[1] Sorkun, M. C., Khetan, A. & Er, S.  (2020). Pushing the limits of solubility prediction via quality-oriented data selection, Research Square, DOI:https://doi.org/10.21203/rs.3.rs-84771/v1.
+[1] Sorkun, M. C., Koelman, J.M.V.A. & Er, S.  (2020). Pushing the limits of solubility prediction via quality-oriented data selection, Research Square, DOI:https://doi.org/10.21203/rs.3.rs-84771/v1.
 
 [2] Sorkun, M. C., Khetan, A., & Er, S. (2019).  [AqSolDB, a curated reference set of aqueous solubility and 2D descriptors for a diverse set of compounds](https://www.nature.com/articles/s41597-019-0151-1). Scientific data, 6(1), 1-8.
 
