@@ -24,9 +24,6 @@ import base64
 # Custom function
 ######################
 ## Calculate molecular descriptors
-
-
-
 def generate(smiles_list, verbose=False):
 
     selected_columns=['nHBAcc', 'nHBDon', 'nRot', 'nBonds', 'nAromBond', 'nBondsO', 'nBondsS',
@@ -71,15 +68,10 @@ def generate(smiles_list, verbose=False):
 # Page Title
 ######################
 
-st.write("""# AqSolPred: Aqueous Solubility Prediction Tool
-
-""")
-
+st.write("""# AqSolPred: Aqueous Solubility Prediction Tool""")
 
 image = Image.open('solubility-factors.png')
-
 st.image(image, use_column_width=False)
-
 
 
 ######################
@@ -93,15 +85,12 @@ SMILES_input = "CN1C=NC2=C1C(=O)N(C(=O)N2C)C\nCC(=O)OC1=CC=CC=C1C(=O)O"
 
 SMILES = st.sidebar.text_area('then press ctrl+enter', SMILES_input, height=20)
 SMILES = SMILES.split('\n')
+SMILES = list(filter(None, SMILES))
 
 
 st.sidebar.write("""---------**OR**---------""")
+st.sidebar.write("""**Upload a file with a column named 'SMILES'** (Max:300)""")
 
-
-st.sidebar.write("""**Upload a file with a column named 'SMILES'** (Max:500)""")
-
-
- 
    
 uploaded_file = st.sidebar.file_uploader("Choose a file")
 if uploaded_file is not None:
@@ -113,9 +102,10 @@ if uploaded_file is not None:
 # st.header('Input SMILES')
 # SMILES[1:] # Skips the dummy first item
 
-# Use only top 500
-if len(SMILES)>500:
-    SMILES=SMILES[0:500]
+# Use only top 300
+if len(SMILES)>300:
+    SMILES=SMILES[0:300]
+	
 ## Calculate molecular descriptors
 generated_descriptors = generate(SMILES)
 
@@ -135,12 +125,10 @@ pred_consensus=(pred_mlp+pred_xgb+pred_rf)/3
 
 # results=np.column_stack([pred_mlp,pred_xgb,pred_rf,pred_consensus])
 df_results = pd.DataFrame(SMILES, columns=['SMILES'])
-df_results["LogS (AqSolPred 1.0)"]=pred_consensus
+df_results["LogS (AqSolPred v1.0s)"]=pred_consensus
 df_results=df_results.round(3)
 
-
 # df_results.to_csv("results/predicted-"+test_data_name+".csv",index=False)
-
 
 st.header('Predicted LogS values')
 df_results # Skips the dummy first item
@@ -162,6 +150,8 @@ st.write("""
 AqSolPred is an highly accurate solubility prediction model that consists consensus of 3 ML algorithms (Neural Nets, Random Forest, and XGBoost). AqSolPred is developed using a quality-oriented data selection method described in [1] and trained on AqSolDB [2] largest publicly available aqueous solubility dataset.
 
 AqSolPred showed a top-performance (0.348 LogS Mean Absolute Error) on Huuskonen benchmark dataset [3].
+
+**version:** 1.0s (lite version of v1.0 described in the paper with reduced RFs(n_estimators=200,max_depth=10) but the same performance)
 
 If you are using the predictions from AqSolPred on your work, please cite these papers: [1, 2]
 
