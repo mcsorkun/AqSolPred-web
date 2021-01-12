@@ -20,6 +20,8 @@ from sklearn.ensemble import RandomForestRegressor
 import predefined_models
 import base64
 
+
+
 ######################
 # Custom function
 ######################
@@ -68,6 +70,10 @@ def generate(smiles_list, verbose=False):
 # Page Title
 ######################
 
+
+st.beta_set_page_config(page_title="AqSolPred: Online Solubility Prediction Tool")
+
+
 st.write("""# AqSolPred: Aqueous Solubility Prediction Tool""")
 
 image = Image.open('solubility-factors.png')
@@ -89,7 +95,7 @@ SMILES = list(filter(None, SMILES))
 
 
 st.sidebar.write("""---------**OR**---------""")
-st.sidebar.write("""**Upload a file with a column named 'SMILES'** (Max:300)""")
+st.sidebar.write("""**Upload a file with a column named 'SMILES'** (Max:2000)""")
 
    
 uploaded_file = st.sidebar.file_uploader("Choose a file")
@@ -103,8 +109,8 @@ if uploaded_file is not None:
 # SMILES[1:] # Skips the dummy first item
 
 # Use only top 300
-if len(SMILES)>300:
-    SMILES=SMILES[0:300]
+if len(SMILES)>2000:
+    SMILES=SMILES[0:2000]
 	
 ## Calculate molecular descriptors
 generated_descriptors = generate(SMILES)
@@ -155,7 +161,7 @@ AqSolPred showed a top-performance (0.348 LogS Mean Absolute Error) on Huuskonen
 
 If you are using the predictions from AqSolPred on your work, please cite these papers: [1, 2]
 
-[1] Sorkun, M. C., Koelman, J.M.V.A. & Er, S.  (2020). Pushing the limits of solubility prediction via quality-oriented data selection, Research Square, DOI:https://doi.org/10.21203/rs.3.rs-84771/v1.
+[1] Sorkun, M. C., Koelman, J.M.V.A. & Er, S. (2021). [Pushing the limits of solubility prediction via quality-oriented data selection](https://www.cell.com/iscience/fulltext/S2589-0042(20)31158-5), iScience, 24(1), 101961.
 
 [2] Sorkun, M. C., Khetan, A., & Er, S. (2019).  [AqSolDB, a curated reference set of aqueous solubility and 2D descriptors for a diverse set of compounds](https://www.nature.com/articles/s41597-019-0151-1). Scientific data, 6(1), 1-8.
 
