@@ -6,8 +6,8 @@ AqSolPred showed a top-performance (0.348 LogS Mean Absolute Error) on Huuskonen
 
 # AqSolPred Web Version
 
-Currently, web version is running on google cloud (the related repository is inside gcloud folder). 
-You can visit from the following URL: https://aqsolpred.ew.r.appspot.com/
+Currently, web version is running on Streamlit Share (the related repository is inside streamlit folder). 
+You can visit from the following URL: https://share.streamlit.io/mcsorkun/aqsolpred-web/main/streamlit/app.py
 
 **aqsolpred web version:** 1.0s (lite version of v1.0 described in the paper with reduced RFs(n_estimators=200,max_depth=10) but the same performance)
 
