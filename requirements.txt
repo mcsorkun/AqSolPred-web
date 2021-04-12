@@ -1,4 +1,4 @@
-streamlit==0.78.0
+streamlit==0.69.2
 numpy==1.18.1
 scikit-learn==0.22.2.post1
 mordred==1.2.0
