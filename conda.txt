@@ -1,2 +1,2 @@
 libgcc=5.2.0
-rdkit
+rdkit=2019.09.3
