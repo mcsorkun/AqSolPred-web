@@ -4,6 +4,7 @@ channels:
 - conda-forge
 - defaults
 dependencies:
+    - libgcc=5.2.0
     - rdkit
     - pip
     - pip:
