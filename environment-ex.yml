@@ -5,6 +5,7 @@ channels:
 - defaults
 dependencies:
     - rdkit
+    - pip
     - pip:
         - pandas==1.0.1
         - numpy==1.18.1
