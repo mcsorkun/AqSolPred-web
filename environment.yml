@@ -14,3 +14,4 @@ dependencies:
         - mordred
         - xgboost==1.0.2
         - streamlit==0.69.2
+        - click==8.0
