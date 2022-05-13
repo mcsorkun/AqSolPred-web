@@ -71,7 +71,7 @@ def generate(smiles_list, verbose=False):
 ######################
 
 
-st.beta_set_page_config(page_title="AqSolPred: Online Solubility Prediction Tool")
+st.set_page_config(page_title="AqSolPred: Online Solubility Prediction Tool")
 
 
 st.write("""# AqSolPred: Aqueous Solubility Prediction Tool""")
