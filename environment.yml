@@ -15,3 +15,4 @@ dependencies:
         - mordred
         - xgboost==1.0.2
         - click==8.0
+        - cython
