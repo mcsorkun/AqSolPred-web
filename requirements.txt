@@ -5,4 +5,4 @@ mordred==1.2.0
 pandas==1.0.3
 xgboost==1.0.2
 click==8.0
-numpy==1.18.1
+numpy<1.24
