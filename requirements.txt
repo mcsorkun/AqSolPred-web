@@ -4,5 +4,5 @@ numpy==1.21.0
 pandas
 mordred
 rdkit
-scikit-learn==0.22.2.post1
+scikit-learn
 xgboost==1.0.2
