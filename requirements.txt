@@ -1,7 +1,7 @@
 streamlit
-numpy==1.21.0
-rdkit==2022.9.1
+numpy
+rdkit
 scikit-learn==0.22.2.post1
-mordred==1.2.0
-pandas==1.0.3
+mordred
+pandas
 xgboost==1.0.2
