@@ -1,7 +1,6 @@
 streamlit
 numpy
 rdkit
-scikit-learn==0.22.2.post1
-mordred
+scikit-learn
 pandas
 xgboost==1.0.2
