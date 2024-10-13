@@ -68,7 +68,7 @@ def generate(smiles_list, verbose=False):
     # Fit the imputer on your data and transform it
     imputed_data = imputer.fit_transform(selected_data_test)
     # Convert the result back to a DataFrame if necessary
-    imputed_df = pd.DataFrame(imputed_data, columns=selected_data_test.columns)
+    # imputed_df = pd.DataFrame(imputed_data, columns=selected_data_test.columns)
 
     return imputed_df
 
