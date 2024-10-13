@@ -19,7 +19,7 @@ from sklearn.neural_network import MLPRegressor
 from sklearn.ensemble import RandomForestRegressor
 import predefined_models
 import base64
-
+from sklearn.impute import SimpleImputer
 
 
 ######################
@@ -64,7 +64,13 @@ def generate(smiles_list, verbose=False):
     selected_data_test = test_df[selected_columns]
     selected_data_test = selected_data_test.apply(pd.to_numeric, errors='coerce')
 
-    return selected_data_test
+    imputer = SimpleImputer(strategy='mean')
+    # Fit the imputer on your data and transform it
+    imputed_data = imputer.fit_transform(selected_data_test)
+    # Convert the result back to a DataFrame if necessary
+    imputed_df = pd.DataFrame(imputed_data, columns=selected_data_test.columns)
+
+    return imputed_df
 
 ######################
 # Page Title
@@ -119,6 +125,8 @@ generated_descriptors = generate(SMILES)
 mlp_model_import = pickle.load(open('aqsolpred_mlp_model.pkl', 'rb'))
 xgboost_model_import = pickle.load(open('aqsolpred_xgb_model.pkl', 'rb'))
 # rf_model_import = pickle.load(open('aqsolpred_rf_model_lite.pkl', 'rb'))
+
+
 
 
 #predict test data (MLP,XGB,RF)
