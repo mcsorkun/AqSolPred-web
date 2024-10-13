@@ -1,5 +1,5 @@
 streamlit
-numpy==1.18.1
+numpy==2.0.2
 cython
 rdkit
 scikit-learn
