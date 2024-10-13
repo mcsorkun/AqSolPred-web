@@ -62,7 +62,7 @@ def generate(smiles_list, verbose=False):
     
     #Select predefined columns by the model
     selected_data_test = test_df[selected_columns]
-    selected_data_test = selected_data_test.apply(pd.to_numeric)
+    selected_data_test = selected_data_test.apply(pd.to_numeric, errors='coerce')
 
     return selected_data_test
 
