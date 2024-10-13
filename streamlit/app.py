@@ -70,7 +70,7 @@ def generate(smiles_list, verbose=False):
     # Convert the result back to a DataFrame if necessary
     # imputed_df = pd.DataFrame(imputed_data, columns=selected_data_test.columns)
 
-    return imputed_df
+    return imputed_data
 
 ######################
 # Page Title
