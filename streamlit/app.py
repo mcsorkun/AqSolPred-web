@@ -64,7 +64,7 @@ def generate(smiles_list, verbose=False):
     selected_data_test = test_df[selected_columns]
     # selected_data_test = selected_data_test.apply(pd.to_numeric, errors='coerce')
 
-    imputer = SimpleImputer(strategy='mean')
+    imputer = SimpleImputer(strategy='most_frequent')
     # Fit the imputer on your data and transform it
     imputed_data = imputer.fit_transform(selected_data_test)
     # Convert the result back to a DataFrame if necessary
