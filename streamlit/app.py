@@ -59,11 +59,14 @@ def generate(smiles_list, verbose=False):
     
     #create Mordred desc dataframe
     test_df=pd.DataFrame(index=test_formula_list, data=test_mordred_descriptors,columns=column_names)
+
     
     #Select predefined columns by the model
     selected_data_test = test_df[selected_columns]
     selected_data_test = selected_data_test.apply(pd.to_numeric, errors='coerce')
+    selected_data_test.fillna(selected_data_test.mean())
 
+	
     imputer = SimpleImputer(strategy='most_frequent')
     # Fit the imputer on your data and transform it
     imputed_data = imputer.fit_transform(selected_data_test)
