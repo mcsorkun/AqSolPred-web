@@ -1,8 +1,8 @@
 streamlit
 cython
-numpy==1.16.6
-pandas
-mordred
 rdkit
+mordred
+pandas
+numpy==1.16.6
 scikit-learn==0.22.1
 xgboost==1.0.2
