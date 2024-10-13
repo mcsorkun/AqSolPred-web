@@ -3,6 +3,6 @@ cython
 rdkit
 mordred
 pandas
-numpy==1.18.1 --only-binary :all:
+numpy==1.20.1
 scikit-learn==0.22.1
 xgboost==1.0.2
