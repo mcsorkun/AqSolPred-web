@@ -1,5 +1,6 @@
 streamlit
 numpy==1.18.1
+cython
 rdkit
 scikit-learn
 pandas
