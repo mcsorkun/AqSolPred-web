@@ -1,7 +1,7 @@
 streamlit==1.38.0
 cython
 rdkit
-mordred
+mordredcommunity
 pandas
 numpy
 scikit-learn
