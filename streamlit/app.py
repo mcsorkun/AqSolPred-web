@@ -90,7 +90,7 @@ st.sidebar.write('**Type SMILES below**')
 ## Read SMILES input
 SMILES_input = "CN1C=NC2=C1C(=O)N(C(=O)N2C)C\nCC(=O)OC1=CC=CC=C1C(=O)O"
 
-SMILES = st.sidebar.text_area('then press ctrl+enter', SMILES_input, height=20)
+SMILES = st.sidebar.text_area('then press ctrl+enter', SMILES_input)
 SMILES = SMILES.split('\n')
 SMILES = list(filter(None, SMILES))
 
